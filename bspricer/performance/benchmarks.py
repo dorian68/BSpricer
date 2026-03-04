@@ -3,7 +3,6 @@ from __future__ import annotations
 import time
 
 from bspricer.models.black_scholes import price as bs_price
-from bspricer.pricing.monte_carlo import price_asian_option_mc
 from bspricer.performance.numba_kernels import numba_available
 
 
@@ -25,6 +24,8 @@ def run_pricing_benchmarks(
     mc_paths: int = 20000,
     mc_steps: int = 100,
 ) -> dict:
+    from bspricer.pricing.monte_carlo import price_asian_option_mc
+
     if numba_available():
         price_asian_option_mc(
             spot=100.0,
